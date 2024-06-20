@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles de la Orden</title>
+</head>
+<body>
+    <h1>Detalles de la Orden</h1>
+    <p>Factura ID: {{ factura_id }}</p>
+    <p>Orden ID: {{ order_data['orden_id'] }}</p>
+    <h2>Cliente</h2>
+    <p>Nombre: {{ order_data['cliente']['nombre'] }}</p>
+    <p>Cédula: {{ order_data['cliente']['cedula'] }}</p>
+    <p>Dirección: {{ order_data['cliente']['direccion'] }}</p>
+    <h2>Productos</h2>
+    <ul>
+        {% for producto in order_data['productos'] %}
+            <li>{{ producto['nombre'] }} - Cantidad: {{ producto['cantidad'] }} - Precio: {{ producto['precio'] }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Precio Total: {{ precio_total }}</h3>
+</body>
+</html>

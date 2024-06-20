@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Shopping</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .product-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 15px;
+            text-align: center;
+        }
+        .product-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">My Shopping</h1>
+        <form action="/comprar" method="post">
+            <div class="form-group">
+                <label for="nombre_cliente">Nombre del cliente:</label>
+                <input type="text" class="form-control" id="nombre_cliente" name="nombre_cliente" required>
+            </div>
+            <div class="form-group">
+                <label for="cedula_identidad">Cédula de identidad:</label>
+                <input type="text" class="form-control" id="cedula_identidad" name="cedula_identidad" required>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección:</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" required>
+            </div>
+
+            <div class="row">
+                {% for producto in productos %}
+                    <div class="col-md-4">
+                        <div class="product-card">
+                            <img src="{{ producto[3] }}" class="product-image" alt="{{ producto[1] }}">
+                            <h5>{{ producto[1] }}</h5>
+                            <p>{{ producto[2] }}</p>
+                            <p>{{ producto[4] }}</p>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="producto_{{ producto[0] }}" name="producto_id" value="{{ producto[0] }}">
+                                <label class="form-check-label" for="producto_{{ producto[0] }}">Seleccionar</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="cantidad_{{ producto[0] }}" min="1" placeholder="Cantidad">
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-4">Comprar</button>
+
+            <br>
+            <br>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

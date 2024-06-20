@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Orden</title>
+</head>
+<body>
+    <h1>Buscar Orden</h1>
+    <form action="{{ url_for('fetch_order') }}" method="post">
+        <label for="orden_id">Número de Orden:</label>
+        <input type="text" id="orden_id" name="orden_id" required>
+        <button type="submit">Buscar</button>
+    </form>
+</body>
+</html>
